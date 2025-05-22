@@ -35,30 +35,28 @@
 <body>
 
   <div class="title">🏆 แจ็คพอตล่าสุด 🏆</div>
-  <div class="jackpot" id="jackpotAmount">1,769,000 บาท</div>
+  <div class="jackpot" id="jackpotAmount">1,769,450 บาท</div>
   <div class="updated-time" id="updateTime">อัปเดตล่าสุดเมื่อ ...</div>
 
   <script>
-    let jackpot = 1769000;
+    let jackpotPrefix = 1769; // ตัวเลขหลักแสนและหมื่น
 
     function updateJackpot() {
-      // เปลี่ยนทีละหลัก 100 - 1,000
-      const change = (Math.floor(Math.random() * 10) + 1) * 100;
-      const plusOrMinus = Math.random() < 0.5 ? -1 : 1;
-      jackpot += change * plusOrMinus;
+      // สุ่มเลข 3 ตัวท้าย
+      const lastThree = Math.floor(Math.random() * 1000); // 0 - 999
+      const fullJackpot = jackpotPrefix * 1000 + lastThree;
 
-      // จำกัดไม่ให้ต่ำกว่า 1,000,000
-      if (jackpot < 1000000) jackpot = 1769000;
-
-      // อัปเดตตัวเลข
-      document.getElementById("jackpotAmount").innerText = jackpot.toLocaleString("th-TH") + " บาท";
+      // อัปเดตเลขแจ็คพอต
+      document.getElementById("jackpotAmount").innerText =
+        fullJackpot.toLocaleString("th-TH") + " บาท";
 
       // อัปเดตเวลา
       const now = new Date();
       const options = { day: "2-digit", month: "short", year: "numeric" };
       const date = now.toLocaleDateString("th-TH", options).replace(".", "");
       const time = now.toLocaleTimeString("th-TH");
-      document.getElementById("updateTime").innerText = `อัปเดตล่าสุดเมื่อ ${date} ${time}`;
+      document.getElementById("updateTime").innerText =
+        `อัปเดตล่าสุดเมื่อ ${date} ${time}`;
 
       // เรียกซ้ำใน 1-2 วินาที
       setTimeout(updateJackpot, Math.random() * 1000 + 1000);
