@@ -2,41 +2,63 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8">
-  <title>จำนวนคนออนไลน์</title>
+  <title>แจ็คพอตล่าสุด</title>
   <style>
     body {
       background-color: #000;
       color: white;
       font-family: sans-serif;
       text-align: center;
-      padding-top: 100px;
-      font-size: 24px;
+      padding-top: 80px;
     }
 
-    #onlineCount {
-      font-size: 42px;
+    .title {
+      font-size: 24px;
       font-weight: bold;
-      color: #00ff99;
-      text-shadow: 0 0 10px #00ff99, 0 0 20px #00ff99;
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    .jackpot {
+      font-size: 48px;
+      font-weight: bold;
+      color: #ff4444;
+      text-shadow: 0 0 8px #ff4444, 0 0 15px #ff4444;
+      margin-bottom: 10px;
+    }
+
+    .updated-time {
+      font-size: 16px;
+      color: #ccc;
     }
   </style>
 </head>
 <body>
 
-  👥 ขณะนี้มีผู้ใช้งานออนไลน์อยู่ <span id="onlineCount">815,000</span> คน
+  <div class="title">🏆 แจ็คพอตล่าสุด 🏆</div>
+  <div class="jackpot" id="jackpotAmount">1,769,450 บาท</div>
+  <div class="updated-time" id="updateTime">อัปเดตล่าสุดเมื่อ ...</div>
 
   <script>
-    let count = 815000;
+    // ให้ตัวเลขเปลี่ยนเล็กน้อยอัตโนมัติ
+    let jackpot = 1769450;
 
-    function updateOnlineCount() {
+    function updateJackpot() {
       const change = Math.floor(Math.random() * 11) - 5;
-      count += change;
-      if (count < 710052) count = 815000;
-      document.getElementById("onlineCount").innerText = count.toLocaleString("th-TH");
-      setTimeout(updateOnlineCount, Math.random() * 1000 + 1000);
+      jackpot += change;
+      document.getElementById("jackpotAmount").innerText = jackpot.toLocaleString("th-TH") + " บาท";
+
+      // แสดงเวลาปัจจุบัน
+      const now = new Date();
+      const options = { day: "2-digit", month: "short", year: "numeric" };
+      const date = now.toLocaleDateString("th-TH", options).replace(".", "");
+      const time = now.toLocaleTimeString("th-TH");
+      document.getElementById("updateTime").innerText = `อัปเดตล่าสุดเมื่อ ${date} ${time}`;
+
+      setTimeout(updateJackpot, Math.random() * 1000 + 1000);
     }
 
-    updateOnlineCount();
+    updateJackpot();
   </script>
 
 </body>
