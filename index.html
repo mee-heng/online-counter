@@ -15,15 +15,22 @@
     .title {
       font-size: 24px;
       font-weight: bold;
-      color: white;
       margin-bottom: 20px;
+    }
+
+    .jackpot-box {
+      display: inline-block;
+      padding: 20px 40px;
+      border: 2px solid #ff4444;
+      border-radius: 12px;
+      box-shadow: 0 0 10px #ff4444, 0 0 20px #ff4444 inset;
     }
 
     .jackpot {
       font-size: 48px;
       font-weight: bold;
-      color: #ff4444;
-      text-shadow: 0 0 8px #ff4444, 0 0 15px #ff4444;
+      color: white;
+      text-shadow: 0 0 10px #ffffff;
       margin-bottom: 10px;
     }
 
@@ -36,11 +43,12 @@
 <body>
 
   <div class="title">🏆 แจ็คพอตล่าสุด 🏆</div>
-  <div class="jackpot" id="jackpotAmount">1,769,450 บาท</div>
-  <div class="updated-time" id="updateTime">อัปเดตล่าสุดเมื่อ ...</div>
+  <div class="jackpot-box">
+    <div class="jackpot" id="jackpotAmount">1,769,450 บาท</div>
+    <div class="updated-time" id="updateTime">อัปเดตล่าสุดเมื่อ ...</div>
+  </div>
 
   <script>
-    // ให้ตัวเลขเปลี่ยนเล็กน้อยอัตโนมัติ
     let jackpot = 1769450;
 
     function updateJackpot() {
@@ -48,7 +56,6 @@
       jackpot += change;
       document.getElementById("jackpotAmount").innerText = jackpot.toLocaleString("th-TH") + " บาท";
 
-      // แสดงเวลาปัจจุบัน
       const now = new Date();
       const options = { day: "2-digit", month: "short", year: "numeric" };
       const date = now.toLocaleDateString("th-TH", options).replace(".", "");
