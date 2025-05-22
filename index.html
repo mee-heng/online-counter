@@ -1,0 +1,50 @@
+index.html
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>จำนวนคนออนไลน์</title>
+  <style>
+    body {
+      background-color: #000;
+      color: white;
+      font-family: sans-serif;
+      text-align: center;
+      padding-top: 100px;
+    }
+
+    .online-glow-box {
+      display: inline-block;
+      padding: 20px 40px;
+      background-color: #111;
+      border-radius: 12px;
+      font-size: 32px;
+      font-weight: bold;
+      color: #00ff99;
+      box-shadow: 0 0 15px #00ff99, 0 0 30px #00ff99;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="online-glow-box">
+    👥 ออนไลน์ <span id="onlineCount">815,000</span> คน
+  </div>
+
+  <script>
+    let count = 815000;
+
+    function updateOnlineCount() {
+      const change = Math.floor(Math.random() * 11) - 5;
+      count += change;
+      if (count < 710052) count = 815000;
+      document.getElementById("onlineCount").innerText = count.toLocaleString("th-TH");
+      setTimeout(updateOnlineCount, Math.random() * 1000 + 1000);
+    }
+
+    updateOnlineCount();
+  </script>
+
+</body>
+</html>
+Create index.html
